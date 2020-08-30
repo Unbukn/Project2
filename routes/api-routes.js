@@ -22,7 +22,7 @@ router.post('/api/signup', (req, res) => {
       password: req.body.password,
       age: req.body.age,
       orientation: req.body.orientation,
-      avatar: "https://dateapppbucket.s3-us-west-2.amazonaws.com/"+req.body.avatar,
+      avatar: "https://jahdevbucket.s3.amazonaws.com/"+req.body.avatar,
       gender: req.body.gender,
       securityQuestion1: req.body.securityQuestion1,
       securityQuestion2: req.body.securityQuestion2,
