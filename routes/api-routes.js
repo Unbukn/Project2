@@ -9,6 +9,8 @@ const multer  = require('multer')
 const toButcketFS = require("../config/middleware/toButcketFS.js");
 const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
+const AWS_BUCKET_PUB = process.env.AWS_PUBLIC_URL
+
 // ######################################################
 // saving profile picture to AWS S3 #####################
 // ######################################################
@@ -22,7 +24,7 @@ router.post('/api/signup', (req, res) => {
       password: req.body.password,
       age: req.body.age,
       orientation: req.body.orientation,
-      avatar: "https://jahdevbucket.s3.amazonaws.com/"+req.body.avatar,
+      avatar: AWS_BUCKET_PUB+req.body.avatar,
       gender: req.body.gender,
       securityQuestion1: req.body.securityQuestion1,
       securityQuestion2: req.body.securityQuestion2,
@@ -34,8 +36,7 @@ router.post('/api/signup', (req, res) => {
       aboutMe3: req.body.aboutMe3,
       matches: req.body.matches,
       location: req.body.location
-  })
-    .then(function () {
+  }).then(function () {
       res.redirect(307, '/api/login');
     })
     .catch(function (err) {
@@ -46,11 +47,9 @@ router.post('/api/signup', (req, res) => {
 // saving profile picture to AWS S3 #####################
 // ######################################################
 router.post('/profile', upload.single('avatar'), function (req, res, next) {
-    console.log("the BODY********************************************")
-    console.log(req.file)
-
+  console.log("the BODY********************************************")
+  console.log(req.file)
   toButcketFS((req.file.buffer), (req.file.originalname))
-  console.log("MIDDLE WARE RAN ********************************************^")
 
 
 })
@@ -142,6 +141,7 @@ router.get("/api/user_data", function (req, res) {
 
 
 router.put("/api/profile/:id", upload.single('avatar'), function (req, res) {
+  console.log(req.body.avatar)
   db.User.update(
     { avatar : req.body.avatar,
       location: req.body.location,

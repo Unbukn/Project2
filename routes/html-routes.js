@@ -2,17 +2,13 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 var db = require("../models");
-const {
-  response
-} = require("express");
+const {  response} = require("express");
 const isAuthenticated = require("../config/middleware/isAuthenticated.js");
-const {
-  profile
-} = require("console");
-const {
-  match
-} = require("assert");
+const {  profile } = require("console");
+const {  match } = require("assert");
 const user = require("../models/user");
+
+
 
 // Route to Login in page
 router.get("/", function (req, res) {
