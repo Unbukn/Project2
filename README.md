@@ -28,7 +28,6 @@ Scroll through dates
 
 ## Contributors
 * Ricardo Mansoalvas https://github.com/rmanosalvas
-* James Hudgins https://github.com/Unbukn
 * Don Tran https://github.com/xdonnyt8
 
 ## Deployed Using Heroku
